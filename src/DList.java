@@ -11,24 +11,27 @@ public class DList implements Iterable<String>{
     }
     public void addFirst(String elem){
         Node newNode = new Node(elem);
+        newNode.next = nil.previous;
+        nil.previous.next = newNode;
+        newNode.next = nil;
+        nil.previous = newNode;
+    }
+    public void addLast(String elem){
+        Node newNode = new Node(elem);
         newNode.next = nil.next;
         nil.next.previous = newNode;
         newNode.previous = nil;
         nil.next = newNode;
     }
-    public void addLast(String elem){
-        Node newNode = new Node(elem);
-        newNode.next = nil.previous;
-        nil.previous.previous = newNode;
-
-    }
     public String getFirst(){
-        return nil.next.data;
-    }
-    public String getLast(){
         return nil.previous.data;
     }
-    public String removeFirst(){return null;}
+    public String getLast(){
+        return nil.next.data;
+    }
+    public String removeFirst(){
+        return nil.next.getData();
+    }
     public String removeLast(){return null;}
     public String get(int index){return null;}
     public String set(int index, String value){return null;}
